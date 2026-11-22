@@ -122,7 +122,7 @@ export function createApp(options: AppOptions = {}) {
 	app.get("/", (c) => {
 		c.header(
 			"content-security-policy",
-			`default-src 'none'; script-src ${DL_SCRIPT_HASH} https://flisk.si https://flisk.sh; connect-src https://analytics.flisk.si https://flisk.si; style-src 'unsafe-inline' https://flisk.si https://fonts.googleapis.com; font-src https://flisk.si https://fonts.gstatic.com; img-src 'self' https://flisk.si; media-src 'self'; frame-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'`,
+			`default-src 'none'; script-src ${DL_SCRIPT_HASH} https://flisk.si https://flisk.sh; connect-src https://analytics.flisk.si https://flisk.si; style-src 'unsafe-inline' https://flisk.si https://fonts.googleapis.com; font-src https://flisk.si https://fonts.gstatic.com; img-src 'self' https://flisk.si; media-src 'self'; frame-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors https://analytics.flisk.si`,
 		);
 		return c.html(homePage(baseOf(c)));
 	});

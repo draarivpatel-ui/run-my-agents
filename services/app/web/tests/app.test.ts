@@ -355,7 +355,8 @@ describe("baseline security headers", () => {
 		for (const path of ["/", "/about", "/health", "/robots.txt", "/nope"]) {
 			const res = await app.request(path);
 			expect(res.headers.get("x-content-type-options")).toBe("nosniff");
-			expect(res.headers.get("x-frame-options")).toBe("SAMEORIGIN");
+			// The home page lets analytics.flisk.si frame it (click heatmap), so it gets no X-Frame-Options.
+			expect(res.headers.get("x-frame-options")).toBe(path === "/" ? null : "SAMEORIGIN");
 			expect(res.headers.get("strict-transport-security")).toBe(
 				"max-age=31536000; includeSubDomains",
 			);
